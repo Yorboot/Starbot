@@ -1,0 +1,84 @@
+html {
+    padding: 0%;
+    margin: 0%;
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to bottom left, rgba(54, 68, 61, 0.8), rgba(78, 95, 88, 0.9), rgba(65, 87, 75, 0.8));
+
+}
+
+body {
+    padding: 0%;
+    height: 100vh;
+    width: 100vw;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0em;
+}
+
+h1 {
+    font-size: 0em;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 87.5vh;
+}
+.mcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 33vh;
+}
+input[type = "text"],input[type = "password"]{
+    font-size: 120%;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgba(39, 39, 39, 0);
+    border-radius: 8px;
+    background-color: rgb(86, 92, 89);
+}
+input[type = "password"]{
+    margin-bottom: 5px;
+}
+input::placeholder{
+    color: white;
+    opacity: 0.9;
+}
+b{
+    color: rgba(44, 44, 44, 0.9);
+    font-size: 125%;
+}
+input:focus{
+    border: 3px solid rgba(39, 39, 39, 0);
+}
+.reg{
+    height: 3.5vh;
+    width: 13.1vw;
+    font-size: 105%;
+    border-radius: 8px;
+    background-color: rgba(86, 92, 89,0.8);
+    border: 3px solid rgba(39, 39, 39, 0);
+    box-shadow: 1px 0.5px 1px 1px black;
+}
+.reg:active{
+    box-shadow: 0px 0px 0px 0px black;
+}

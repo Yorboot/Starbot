@@ -1,0 +1,284 @@
+/*General classes*/
+html {
+  padding: 0%;
+  margin: 0%;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(to bottom left, rgba(54, 68, 61, 0.7), rgba(78, 95, 88, 0.8), rgba(65, 87, 75, 0.8));
+
+}
+
+body {
+  padding: 0%;
+  height: 100vh;
+  width: 100vw;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0em;
+}
+
+h1 {
+  font-size: 0em;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 87.5vh;
+}
+
+/* main text*/
+.Flex-container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+.Title {
+  position: relative;
+  top: 50%;
+  font-size: 350%;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+
+}
+
+/*Navbar*/
+.Navbar {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  background-color: rgba(84, 105, 97, 0.8);
+}
+
+.Head {
+  height: 10vh;
+  width: 100vw;
+  position: relative;
+}
+
+.Navbar>ul {
+  list-style: none;
+}
+
+.nav {
+  list-style: none;
+}
+
+.nav-link {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 2px 10px 4px;
+  text-decoration: none;
+  transform: translateY(-6px);
+  font-size: 120%;
+}
+
+.flt-right {
+  background-color: rgba(44, 78, 59, 0);
+  border: 0px;
+  right: 1vw;
+  position: relative;
+  float: inline-end;
+  font-size: 130%;
+}
+
+/*transitions/animations*/
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link::before {
+  transition: 400ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color: rgba(44, 78, 59, 0.5);
+}
+
+.nav-link-ltr::before {
+  width: 0%;
+  bottom: 2%;
+}
+
+.nav-link-ltr:hover::before {
+  width: 85%;
+}
+
+.nav-link:hover {
+  color: rgba(44, 78, 59, 0.7);
+  background-color: rgba(80, 129, 110, 0.3);
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
+}
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+.Login:hover {
+  background-color: rgba(54, 68, 61, 1);
+}
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/*Form*/
+.cancelbtn {
+  border: 0px;
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+
+span.psw {
+  font-size: 121%;
+  float: right;
+}
+.flex-inline{
+  cursor: pointer;
+  bottom: 19px;
+  position: relative;
+  float: right;
+  display: flex !important;
+  flex-direction: column;
+}
+.reg{
+  color: black;
+  text-decoration: none;
+  font-size: 110%;
+}
+/* The Modal*/
+.Modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgba(40, 48, 44, 1);
+   margin: 5% auto 15% auto;/* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #000000;
+  width: 80%;
+  padding: 12px;
+}
+
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+input[type=text],
+input[type=password] {
+  background-color: rgba(71, 90, 80, 0.5);
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid rgb(39, 56, 47);
+  box-sizing: border-box;
+}
+
+.Login {
+  border: 0px;
+  width: 100%;
+  padding: 14px 12px;
+  background-color: rgba(71, 99, 85, 0.5)
+}
+
+/*Footer*/
+.ftr {
+  bottom: 5vh;
+  position: relative;
+}
+
+.DiscImg {
+  left: 0.5vw;
+  position: relative;
+  width: 3vw;
+}
+
+.modal-container {
+  background-color: rgba(54, 68, 61, 0.7) !important;
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 1);
+}
+
+/*containers*/
+.container {
+  padding: 16px;
+}
+.modal-imgcontainer {
+  padding-left: 8%;
+  height: 85%;
+  width: 85%;
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+/*media quarries*/
