@@ -9,13 +9,26 @@
 </head>
 <body>
     <div class = "mcontainer">
-    <form action = "register.php" method='POST'>
+    <form action = "reghome.php" method='POST'>
         <h1 class = "Title">Register</h1>
         <div class = "inputs">
         <label for="Email"><b>Email</b></label>
-        <input type ="text" placeholder="Enter email" name = "email" id = "email" required>
+        <input type ="text" placeholder="Enter email" name = "email" id  = "Email"required>
+<?php 
+
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $email = $_POST["email"];
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        echo '<span class = "Errmsg">invalid email format</span>';
+        }     
+        }   
+         
+         
+         ?>
+        <br>
         <label for="psw" class = "psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name = "psw" required>
+        <input type="password" placeholder="Enter Password" id = "psw" required>
         </div>
         <button type="submit" class = "reg">Register</button>
     </div>

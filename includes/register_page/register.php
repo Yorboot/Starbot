@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         "psw"=> $_POST["psw"],
 
     );
-
+    $email = $_POST["email"];
     if(filesize("database.json") == 0){
     $first_record = array($first_data);
     $data_to_save = $first_record;
@@ -22,7 +22,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $error = true;
     }
     }
-    first_register();
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $emailErr = "Invalid email format";
+    } else{
+        first_register();
+    }
 }else{
-    header('register.html');
+    header("Location: reghome.php ");
 }
