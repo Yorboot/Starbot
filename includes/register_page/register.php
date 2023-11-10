@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     if(!file_put_contents("database.json", json_encode($data_to_save, JSON_PRETTY_PRINT), LOCK_EX)){
         $error = false;
-        header('index.html');
+        header('Location: ../index.html');
     }else{
         $error = true;
     }
