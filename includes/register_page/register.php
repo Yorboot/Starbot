@@ -1,5 +1,5 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
        function first_register (){
     $first_data = array(
         "email"=> $_POST["email"],
