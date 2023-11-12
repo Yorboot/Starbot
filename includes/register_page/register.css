@@ -70,6 +70,9 @@ b{
 input:focus{
     border: 3px solid rgba(39, 39, 39, 0);
 }
+input:focus::placeholder{
+    opacity: 0;
+}
 .reg{
     height: 3.5vh;
     width: 100%;

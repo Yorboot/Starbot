@@ -209,10 +209,10 @@ span.psw {
   left: 35%;
   top: 0;
   width: 36rem;
-  height: 40,3rem;
-  max-height: 90vh;
-  max-width: 90%;
-  top: 12%;
+  height: 47rem;
+  max-height: 95vh;
+  max-width: 95%;
+  top: 5%;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -220,10 +220,10 @@ span.psw {
 /* Modal Content/Box */
 .modal-content {
   background-color: rgba(40, 48, 44, 1);
-   margin: 5% auto 3% auto;/* 5% from the top, 15% from the bottom and centered */
+   margin: 5% auto 5% auto;/* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #000000;
   width: 85%;
-  height: 87%;
+  height: 90.3%;
   padding: 12px;
 }
 
@@ -246,14 +246,20 @@ input[type=password] {
   border: 2px solid rgb(39, 56, 47);
   box-sizing: border-box;
 }
+input:focus::placeholder{
+  opacity: 0;
+}
 
 .Login {
   border: 0px;
   width: 100%;
   padding: 14px 12px;
-  background-color: rgba(71, 99, 85, 0.5)
+  background-color: rgba(71, 99, 85, 0.5);
+  box-shadow: 1px 0.5px 1px 1px rgba(0, 0, 0, 0.2);
 }
-
+.Login:active {
+  box-shadow: 0px 0px 0px 0px black;
+}
 /*Footer*/
 .ftr {
   bottom: 5vh;
@@ -292,4 +298,6 @@ input[type=password] {
 .margin-top{
   margin-top: 21%;
 }
+
+
 /*media quarries*/
