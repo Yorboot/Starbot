@@ -43,13 +43,12 @@ main {
   height: 87.5vh;
 }
 
-/* main text*/
-.Flex-container {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  display: flex;
+.margin-top{
+  margin-top: 21%;
 }
+
+
+/* main text*/
 
 .Title {
   position: relative;
@@ -167,14 +166,16 @@ button:hover {
   cursor: pointer;
 }
 
-/*Form*/
-.cancelbtn {
-  border: 0px;
-  width: auto;
-  padding: 10px 18px;
-  cursor: pointer;
-  background-color: #f44336;
+input:focus::placeholder{
+  opacity: 0;
 }
+
+.Login:active {
+  box-shadow: 0px 0px 0px 0px black;
+}
+
+
+/*Form*/
 
 
 img.avatar {
@@ -246,20 +247,7 @@ input[type=password] {
   border: 2px solid rgb(39, 56, 47);
   box-sizing: border-box;
 }
-input:focus::placeholder{
-  opacity: 0;
-}
 
-.Login {
-  border: 0px;
-  width: 100%;
-  padding: 14px 12px;
-  background-color: rgba(71, 99, 85, 0.5);
-  box-shadow: 1px 0.5px 1px 1px rgba(0, 0, 0, 0.2);
-}
-.Login:active {
-  box-shadow: 0px 0px 0px 0px black;
-}
 /*Footer*/
 .ftr {
   bottom: 5vh;
@@ -281,6 +269,14 @@ input:focus::placeholder{
 }
 
 /*containers*/
+
+.Flex-container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
 .container {
   padding: 16px;
 }
@@ -291,13 +287,30 @@ input:focus::placeholder{
   margin: 24px 37% 40px 37%;
   position: relative;
 }
+
+/*Butttons*/
+
+.Login {
+  border: 0px;
+  width: 100%;
+  padding: 14px 12px;
+  background-color: rgba(71, 99, 85, 0.5);
+  box-shadow: 1px 0.5px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.cancelbtn {
+  border: 0px;
+  width: auto;
+  padding: 10px 18px;
+  cursor: pointer;
+  background-color: #f44336;
+}
+
 .Rmb{
   cursor: pointer;
   margin-top: 10px;
 }
-.margin-top{
-  margin-top: 21%;
-}
+
 
 
 /*media quarries*/

@@ -1,31 +1,24 @@
 <?php
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-       function first_register (){
-    $first_data = array(
-        "email"=> $_POST["email"],
-        "psw"=> $_POST["psw"],
+    function connectdb(){
+    //set al variables to acces database
+    $dsn = "mysql:host=localhost;dbname=starbot";
+    $dbusername = "root";
+    $dbpassword = "";
+    //try to create a new pdo object and catch any errors if they occur if so then echo them out
+    try{
+        $pdo = new PDO($dsn, $dbusername,$dbpassword);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e){
+        echo "connection failed".$e->getMessage();
 
-    );
-    $email = $_POST["email"];
-    if(filesize("database.json") == 0){
-    $first_record = array($first_data);
-    $data_to_save = $first_record;
-    }else{
-    $old_record = json_decode(file_get_contents("database.json"));
-    array_push($old_record, $first_data);
-    $data_to_save = $old_record;
-    }
-    if(!file_put_contents("database.json", json_encode($data_to_save, JSON_PRETTY_PRINT), LOCK_EX)){
-        $error = false;
-        header('Location: ../index.html');
-    }else{
-        $error = true;
     }
     }
+    $email = _POST[$email];
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $emailErr = "Invalid email format";
     } else{
-        first_register();
+        connectdb();
     }
 }else{
     header("Location: reghome.php ");
