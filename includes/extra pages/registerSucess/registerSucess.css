@@ -1,0 +1,9 @@
+img{
+    height: 89vh;
+    width: 55vw;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
