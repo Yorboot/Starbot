@@ -17,6 +17,10 @@ body {
 
 }
 
+label,input,button,a,input::placeholder{
+  font-family:Cascadia Code; 
+}
+
 body,
 h1,
 h2,
@@ -29,6 +33,7 @@ figcaption,
 blockquote,
 dl,
 dd {
+  font-family: Cascadia Code;
   margin: 0em;
 }
 

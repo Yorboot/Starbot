@@ -1,5 +1,5 @@
 <?php
-    require_once "dbh.inc.php";
+    require_once "../dbh.inc.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $uname = $_POST["uname"];
         $email = $_POST["email"];
