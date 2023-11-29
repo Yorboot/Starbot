@@ -7,6 +7,12 @@ html {
   background-image: linear-gradient(to bottom left, rgba(54, 68, 61, 0.7), rgba(78, 95, 88, 0.8), rgba(65, 87, 75, 0.8));
 
 }
+label,input,button,a,input::placeholder,h1,h2,h3,h4,h5,p{
+  font-family:Cascadia Code !important; 
+}
+.fw{
+  font-weight: 350;
+}
 body {
   padding: 0%;
   height: 100vh;

@@ -17,10 +17,19 @@ body {
 
 }
 
-label,input,button,a,input::placeholder{
-  font-family:Cascadia Code; 
+label,input,button,a,input::placeholder,h1,h2,h3,h4,h5,p{
+  font-family:Cascadia Code !important; 
 }
-
+label{
+  font-weight: 300;
+}
+input::placeholder{
+  font-family: 100;
+}
+.fw{
+  font-family: Cascadia Code;
+  font-weight: 350;
+}
 body,
 h1,
 h2,
@@ -33,7 +42,7 @@ figcaption,
 blockquote,
 dl,
 dd {
-  font-family: Cascadia Code;
+
   margin: 0em;
 }
 
@@ -112,7 +121,9 @@ main {
   font-size: 130%;
   cursor: pointer;
 }
-
+.Lgmb{
+  font-size: 119%;
+}
 /*transitions/animations*/
 
 .nav-link:hover {

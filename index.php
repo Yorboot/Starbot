@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    $_SESSION["username"] = "Localhost";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,9 +28,10 @@
             <ul class="nav">
                 <li><a href="#main" class="nav-link nav-link-ltr">Main</a></li>
                 <li><a class="nav-link nav-link-ltr">Dashboard</a></li>
-                <li><a href = "/includes/extra pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a></li>
+                <li><a href = "includes/extra pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a></li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
-                <li><button class="nav-link nav-link-ltr flt-right"onclick="document.getElementById('m1').style.display = 'block'">Login</button></li>
+                <!--Lgmb = Login main button-->
+                <li><button class="nav-link nav-link-ltr flt-right Lgmb fw"onclick="document.getElementById('m1').style.display = 'block'">Login</button></li>
             </ul>
         </div>
     </header>
@@ -57,7 +62,7 @@
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter password" name="psw" id="psw" required>
                 <!--Login buton-->
-                <button type="submit" class="Login">Login</button>
+                <button type="submit" class="Login fw">Login</button>
                 <!--Remember me button-->
                 <label>
                     <input class = "Rmb" type="checkbox" checked="checked" name="remember">Remember me
@@ -65,10 +70,10 @@
             </div>
             <div class="modal-container" style="background-color: #f1f1f1">
                 <button type="button" onclick="document.getElementById('m1').style.display = 'none'"
-                    class="cancelbtn">Cancel</button>
+                    class="cancelbtn fw">Cancel</button>
                 <div class = "flex-inline">
-                <span class="reg"><a href = 'includes/register_page/reghome.html' class = "reg">Register</a></span>
-                <span class="psw"><a>Forgot password?</a></span>
+                <span class="reg"><a href = 'includes/register_page/reghome.html' class = "reg fw">Register</a></span>
+                <span class="psw fw"><a>Forgot password?</a></span>
                 </div>
             </div>
         </form>
