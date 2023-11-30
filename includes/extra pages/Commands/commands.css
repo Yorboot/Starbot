@@ -105,3 +105,14 @@ dd {
     text-align: center;
     font-size: 250%;
 }
+/*Footer*/
+.ftr {
+  bottom: 5vh;
+  position: relative;
+}
+.DiscImg {
+  left: 0.5vw;
+  position: relative;
+  width: 3vw;
+}
+
