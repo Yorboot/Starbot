@@ -1,6 +1,5 @@
 <?php 
-    session_start();
-    $_SESSION["username"] = "Localhost";
+    require_once('includes/config.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MainPage</title>
     <!--Main css file-->
-    <link rel="stylesheet" href="extra-files/style.css">
+    <link rel="stylesheet" href="style.css">
     <!--Css file to normalize all browsers settings across all browers-->
-    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet"href="node_modules/normalize.css/normalize.css">
     <!--Favcon-->
-    <link rel="icon" href="extra-files/images/favcon.png">
+    <link rel="icon" href="images/favcon.png">
     <!--Main js file-->
-    <script src="extra-files/index.js"></script>
+    <script src="index.js"></script>
     <!--Extra js file-->
     <script src = "includes/index.js"></script>
 </head>
@@ -49,7 +48,7 @@
             <div class="modal-imgcontainer">
                 <span onclick="document.getElementById('m1').style.display = 'none'" class="close"
                     title="Close modal"></span>
-                <img src="extra-files/images/user.png" alt="Avatar" class="avatar">
+                <img src="images/user.png" alt="Avatar" class="avatar">
             </div>
             <div class="modal-container margin-top">
                 <!--Username-->
@@ -80,7 +79,7 @@
         </div>
     </div>
     <footer class="ftr">
-        <span><a class="DiscTxt"><img src="extra-files/images/discord.png" alt="discord icon"class="DiscImg"></a></span>
+        <span><a class="DiscTxt"><img src="images/discord.png" alt="discord icon"class="DiscImg"></a></span>
     </footer>
 </body>
 
