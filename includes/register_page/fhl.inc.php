@@ -11,10 +11,15 @@
 
             $stmt = $pdo->prepare($qeury);
 
+            $hashOptions = [
+                'cost' => 15
+            ];
+            $pswhashed = password_hash($psw, PASSWORD_BCRYPT,$hashOptions);
+
             // name all params
             $stmt->bindParam("uname", $uname);
             $stmt->bindParam("email", $email);
-            $stmt->bindParam("psw", $psw);
+            $stmt->bindParam("psw", $pswhashed);
             //push the query to database
             $stmt->execute();
             //set database connection and statement to null
