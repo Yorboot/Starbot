@@ -1,6 +1,6 @@
 <?php
     require_once "../dbh.inc.php";
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
         $uname = $_POST["uname"];
         $email = $_POST["email"];
         $psw = $_POST["psw"];
@@ -25,11 +25,11 @@
             //set database connection and statement to null
             $pdo = null;
             $stmt = null;
-            header("Location: ../extra pages/registerSucess/registerSucess.html");
+            header("Location: ../extra pages/registerSucess/registerSucess.php");
             die();
         } catch (PDOException $e) {
              die("Quarry failed". $e ->getMessage());
         }
     } else {
-        header("location: reghome.html");
+        header("location: reghome.php");
     }

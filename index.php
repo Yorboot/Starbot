@@ -1,5 +1,5 @@
 <?php 
-    require_once('includes/config.php')
+    require_once('includes/Session_config.inc.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@
             <ul class="nav">
                 <li><a href="#main" class="nav-link nav-link-ltr">Main</a></li>
                 <li><a class="nav-link nav-link-ltr">Dashboard</a></li>
-                <li><a href = "includes/extra pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a></li>
+                <li><a href = "includes/extra pages/Commands/commands.php" class="nav-link nav-link-ltr">Commands</a></li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
                 <li><button class="nav-link nav-link-ltr flt-right Lgmb fw"onclick="document.getElementById('m1').style.display = 'block'">Login</button></li>

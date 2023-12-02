@@ -1,3 +1,8 @@
+<?php
+require_once '../Signup_view.inc.php';
+require_once '../Session_config.inc.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +33,9 @@
         </div>
         <!--Submit button-->
         <button type="submit" class = "reg">Register</button>
+        <?php
+            CheckSignUpErrors();
+        ?>
     </div>
     </form>
 </body>
