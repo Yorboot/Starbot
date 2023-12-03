@@ -72,7 +72,13 @@
                     class="cancelbtn fw">Cancel</button>
                 <div class = "flex-inline">
                 <span class="reg"><a href = 'includes/register_page/reghome.html' class = "reg fw">Register</a></span>
-                <span class="psw fw"><a>Forgot password?</a></span>
+                <!--<span class="psw fw"><a>Forgot password?</a></span>-->
+                <button id="Psw" class="psw fw" type="button" method = "post" onclick="Head();">Forgot Password</button>
+                <script>var PswButton = document.getElementById('Psw');
+                        function Head (){
+                            window.location.href = 'http://localhost/Starbot/includes/register_page/reghome.php';
+                        }
+                </script>
                 </div>
             </div>
         </form>

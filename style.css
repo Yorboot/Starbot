@@ -1,4 +1,7 @@
 /*General classes*/
+script{
+  display: none !important;
+}
 html {
   padding: 0%;
   margin: 0%;
@@ -207,14 +210,19 @@ img.avatar {
 }
 
 
-span.psw {
+.psw {
+  cursor: pointer;
+  position: relative;
+  right: 0.35vw;
+  border: 0px rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255,255,0);
   font-size: 121%;
   float: right;
 }
 .flex-inline{
   cursor: pointer;
   bottom: 19px;
-  position: relative;
+  position: relative !important;
   float: right;
   display: flex !important;
   flex-direction: column;
