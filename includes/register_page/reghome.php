@@ -1,7 +1,11 @@
+
 <?php
+
 require_once '../Signup_view.inc.php';
 require_once '../Session_config.inc.php';
+
 ?>
+
 
 <!DOCTYPE html>
 <html>

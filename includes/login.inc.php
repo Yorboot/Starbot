@@ -5,6 +5,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($email) || empty($psw)){
         exit;
         header("Location: ../index.html");
+        die();
     }
 /*
    function first_register (){

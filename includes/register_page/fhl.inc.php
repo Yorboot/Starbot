@@ -1,6 +1,6 @@
 <?php
     require_once "../dbh.inc.php";
-    if($_SERVER["REQUEST_METHOD"] == "GET"){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
         $uname = $_POST["uname"];
         $email = $_POST["email"];
         $psw = $_POST["psw"];
@@ -32,4 +32,5 @@
         }
     } else {
         header("location: reghome.php");
+        die();
     }
