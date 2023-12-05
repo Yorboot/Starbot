@@ -9,8 +9,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             require_once 'dbh.inc.php';
             require_once 'Signup_model.inc.php';
             require_once 'Signup_cntr.inc.php';
+            require_once 'Session_config.inc.php';
             //error handlers
-            $errors = [""];
+            $errors = [" "];
             if(isInputEmpty($username,$psw,$email)){
                 $errors["EmptyInput"] = "Fill in all fields";
             }
@@ -23,17 +24,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(is_Email_taken($pdo,$email)){
                 $errors["EmailTaken"] = "This email hase already been used";
             }
-            require_once 'Session_config.inc.php';
 
             if($errors){
                 $_SESSION["errors_signup"] = $errors;
                 header("Location:includes/register_page/reghome.php");
-                die();
             }
         } catch (PDOException $e) {
             die("Quarry failed". $e ->getMessage());
     }
 }else{
-    header("location: reghome.php");
-    die();
+    header("location: http://localhost/Starbot/index.php");
 }
