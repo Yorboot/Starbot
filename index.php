@@ -1,6 +1,4 @@
-<?php 
-    require_once('includes/Session_config.inc.php')
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +25,7 @@
             <ul class="nav">
                 <li><a href="#main" class="nav-link nav-link-ltr">Main</a></li>
                 <li><a class="nav-link nav-link-ltr">Dashboard</a></li>
-                <li><a href = "includes/extra pages/Commands/commands.php" class="nav-link nav-link-ltr">Commands</a></li>
+                <li><a href = "includes/extra pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a></li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
                 <li><button class="nav-link nav-link-ltr flt-right Lgmb fw"onclick="document.getElementById('m1').style.display = 'block'">Login</button></li>
@@ -44,7 +42,7 @@
     </main>
     <div class="flex">
     <div class="Modal" id="m1">
-        <form class="modal-content animate" action="includes/login.inc.php" method="post">
+        <form class="modal-content animate"  method="post">
             <div class="modal-imgcontainer">
                 <span onclick="document.getElementById('m1').style.display = 'none'" class="close"
                     title="Close modal"></span>
@@ -71,7 +69,7 @@
                 <button type="button" onclick="document.getElementById('m1').style.display = 'none'"
                     class="cancelbtn fw">Cancel</button>
                 <div class = "flex-inline">
-                <span class="reg"><a href = 'includes/register_page/reghome.html' class = "reg fw">Register</a></span>
+                <span class="reg"><a href = 'includes/register_page/reghome.php' class = "reg fw">Register</a></span>
                 <!--<span class="psw fw"><a>Forgot password?</a></span>-->
                 <button id="Psw" class="psw fw" type="button" method = "post" onclick="Head();">Forgot Password</button>
                 <script>var PswButton = document.getElementById('Psw');
