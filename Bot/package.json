@@ -1,0 +1,23 @@
+{
+  "name": "starbot",
+  "version": "1.0.0",
+  "description": "starbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roy123132123/Starbot.git"
+  },
+  "author": "royboot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Roy123132123/Starbot/issues"
+  },
+  "homepage": "https://github.com/Roy123132123/Starbot#readme",
+  "dependencies": {
+    "discord.js": "^14.15.2",
+    "dotenv": "^16.4.5"
+  }
+}
