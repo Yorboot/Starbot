@@ -1,4 +1,5 @@
 <?php
+session_start();
 $is_invalid = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];

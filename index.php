@@ -1,6 +1,5 @@
 <?php 
     $login = require_once "login.inc.php";
-    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
