@@ -1,0 +1,26 @@
+$Width:100vh;
+$height:100vh;
+html{
+    margin: 0%;
+    padding: 0%;
+}
+body{
+    margin: 0%;
+    padding: 0%;
+}
+
+.Container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: $height;
+}
+.Inputs{
+    background-color: rgba(71, 90, 80, 0.5);
+    width: 100%;
+    padding: 12px 20px 15px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid rgb(39, 56, 47);
+    box-sizing: border-box;
+}

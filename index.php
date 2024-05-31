@@ -40,7 +40,7 @@
         <div class="Flex-container">
             <div class="Main-text">
                 <h1 class="Title">Starbot</h1>
-                <span>&copy;Star-Bot 2023</span>
+                <span>&copy;Star-Bot 2024</span>
             </div>
         </div>
     </main>
