@@ -3,3 +3,9 @@
 .vscode/
 .node_modules/
 link.html
+.gitignore
+/Bot/node_modules
+/Bot/.env
+/Bot/.package.json
+/Bot/.package-lock.json
+/includes/dbh.inc.php
