@@ -1,3 +1,4 @@
+$TextC:rgba(2, 7, 25, 0.85);
 $Width:100vh;
 $height:100vh;
 html{
@@ -8,7 +9,20 @@ body{
     margin: 0%;
     padding: 0%;
 }
-
+@font-face{
+    font-family: Mainfont;
+    src: url(../../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
+    
+}
+h1,h2,h3,h4,h5,h6,span,div,input[type=text],
+input[type=password],a{
+    font-family: Mainfont;
+    font-weight: 500;
+    color: $TextC;
+}
+ul{
+    list-style: none;
+}
 .Container {
     justify-content: center;
     align-items: center;
@@ -21,6 +35,69 @@ body{
     padding: 12px 20px 15px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 2px solid rgb(39, 56, 47);
+    border: 2px rgb(39, 56, 47);
     box-sizing: border-box;
+    border-radius: 4px;
+}
+.Inputs:focus::placeholder{
+    opacity: 0;
+}
+.Submit{
+    width: 100%;
+    height: 4vh;
+    background-color: $TextC;
+    color: white;
+    border-radius: 5px;
+}
+.Fpsw{
+    float: right;
+    cursor: pointer;
+}
+.Olw{
+    top: 1.5vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.OlwT{
+    position: relative;
+    padding-left: 0.4vw;
+    padding-right: 0.4vw;
+}
+.Line{
+    
+    background-color: rgba(191, 191, 192, 0.7);
+    width: 41%;
+    height: 0.3vh;
+}
+.Img{
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    border: 0.1vw solid rgba(204, 204, 204);
+    border-radius: 5px;
+    width: 1.5vw;
+    height: 3vh;
+}
+.facebook{
+    height: 4vh;
+    width: 2vw;
+}
+.Google{
+    height: 4vh;
+    width: 2vw;
+}
+.Boxes{
+    top: 1.5vh;
+    position: relative;
+    right: 2%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.Mb{
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
 }
