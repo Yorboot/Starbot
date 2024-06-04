@@ -1,23 +1,19 @@
 <?php
     require_once "../dbh.inc.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $uname = $_POST["uname"];
         $email = $_POST["email"];
         $psw = $_POST["psw"];
 
         try {
 
-            $qeury = "INSERT INTO users (username, email,psw) VALUES(:uname, :email,:psw);";
+            $qeury = "INSERT INTO users (email,psw) VALUES(:email,:psw);";
 
             $stmt = $pdo->prepare($qeury);
-
-            $hashOptions = [
-                'cost' => 15
-            ];
+            $cost = 15;
+            $hashOptions = ['cost' => $cost];
             $pswhashed = password_hash($psw, PASSWORD_BCRYPT,$hashOptions);
 
             // name all params
-            $stmt->bindParam("uname", $uname);
             $stmt->bindParam("email", $email);
             $stmt->bindParam("psw", $pswhashed);
             //push the query to database
