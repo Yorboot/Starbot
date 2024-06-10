@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Roy123132123/Starbot#readme",
   "dependencies": {
-    "discord.js": "^14.15.2",
+    "discord.js": "^14.15.3",
     "dotenv": "^16.4.5"
   }
 }
