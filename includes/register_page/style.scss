@@ -16,8 +16,7 @@ html,body,ul{
     src: url(../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
     
 }
-h1,h2,h3,h4,h5,h6,span,div,input[type=text],
-input[type=password],a{
+h1,h2,h3,h4,h5,h6,span,div,a{
     font-family: Mainfont;
     font-weight: 500;
     color: $TextC;
@@ -129,4 +128,7 @@ ul{
 }
 .Title{
     margin-left: 0vw;
+}
+.Inputs::placeholder{
+    color:white;
 }

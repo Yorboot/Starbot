@@ -13,7 +13,7 @@
         <form method="POST" class = "Modal">
             
             <div class ="Flex FD">
-                <h1 class="Title">Welcome back!</h1>
+                <h1 class="Title">Welcome!</h1>
                 <input class="Inputs" type="text" placeholder="Enter email">
                 <input class="Inputs" type="password" placeholder="Enter Password">
                 <input class="Inputs"type = "password" placeholder="Confirm Password">

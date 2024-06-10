@@ -2,12 +2,7 @@ a {
   text-decoration: none;
 }
 
-html {
-  margin: 0%;
-  padding: 0%;
-}
-
-body {
+html, body, ul {
   margin: 0%;
   padding: 0%;
 }
@@ -16,11 +11,16 @@ body {
   font-family: Mainfont;
   src: url(../../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
 }
-h1, h2, h3, h4, h5, h6, span, div, input[type=text],
-input[type=password], a {
+h1, h2, h3, h4, h5, h6, span, div, a {
   font-family: Mainfont;
   font-weight: 500;
   color: rgba(2, 7, 25, 0.85);
+}
+
+.Inputs::placeholder {
+  font-family: Mainfont;
+  font-weight: 500;
+  color: white;
 }
 
 ul {
@@ -35,10 +35,10 @@ ul {
 }
 
 .Inputs {
-  background-color: rgba(71, 90, 80, 0.5);
-  width: 100%;
-  padding: 12px 20px 15px 20px;
-  margin: 8px 0;
+  background-color: rgba(71, 90, 80, 0.502);
+  width: 80%;
+  padding: 2vh 0vw 2vh 0.4vw;
+  margin: 0.4vw 0vw 1vh 0.5vw;
   display: inline-block;
   border: 2px rgb(39, 56, 47);
   box-sizing: border-box;
@@ -50,12 +50,12 @@ ul {
 }
 
 .Submit {
-  width: 100%;
+  margin: 0.5vh 0vw 2vh 1vh;
+  width: 80%;
   height: 5.5vh;
   background-color: rgba(2, 7, 25, 0.85);
   color: white;
   border-radius: 5px;
-  margin-bottom: 0.5vh;
 }
 
 .Fpsw {
@@ -64,20 +64,14 @@ ul {
   cursor: pointer;
 }
 
-.Olw {
-  top: 1.5vh;
-  display: flex;
-}
-
 .OlwT {
   position: relative;
-  padding-left: 0.4vw;
-  padding-right: 0.4vw;
+  padding: 0px 12px 0px 12px;
 }
 
 .Line {
   background-color: rgba(191, 191, 192, 0.7);
-  width: 41%;
+  width: 23%;
   height: 0.3vh;
 }
 
@@ -106,9 +100,8 @@ ul {
 }
 
 .Boxes {
-  top: 1.5vh;
   position: relative;
-  right: 2%;
+  top: 2vh;
 }
 
 .Mb {
@@ -122,13 +115,40 @@ ul {
   display: flex;
 }
 
+.FlexB {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
 .FgtPsw {
   position: relative;
-  top: 25vh;
+  top: 25%;
 }
 
 .FgtPsw > span > a {
   color: rgb(14, 66, 254);
+}
+
+.Modal {
+  background-color: rgba(230, 230, 230, 0.833);
+  border-radius: 10px;
+  width: 20vw;
+  height: 70vh;
+}
+
+.FD {
+  flex-direction: column;
+}
+
+.FR {
+  flex-direction: row;
+}
+
+.Title {
+  margin-left: 0vw;
 }
 
 /*# sourceMappingURL=style.css.map */
