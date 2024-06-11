@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Roy123132123/Starbot#readme",
   "dependencies": {
     "discord.js": "^14.15.3",
-    "dotenv": "^16.4.5"
+    "distube": "^5.0.1",
+    "dotenv": "^16.4.5",
+    "ytdl-core": "^4.11.5"
   }
 }
