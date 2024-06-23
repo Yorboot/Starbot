@@ -17,17 +17,15 @@
     <link rel="icon" href="images/favcon.png">
     <!--Main js file-->
     <script src="index.js"></script>
-    <!--Extra js file-->
-    <script src="includes/index.js"></script>
 </head>
 
 <body>
     <header class="Head">
         <div class="Navbar">
             <ul class="nav">
-                <li><a href="#main" class="nav-link nav-link-ltr">Main</a></li>
+                <li><a href="index.php" class="nav-link nav-link-ltr">Main</a></li>
                 <li><a class="nav-link nav-link-ltr">Dashboard</a></li>
-                <li><a href="includes/extra pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a>
+                <li><a href="/includes/extra-pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a>
                 </li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
@@ -44,7 +42,6 @@
         </div>
     </main>
 
-    </div>
     <footer class="ftr">
         <span><a class="DiscTxt"><img src="images/discord.png" alt="discord icon" class="DiscImg"></a></span>
     </footer>
