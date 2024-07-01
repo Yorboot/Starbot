@@ -2,6 +2,8 @@
 //start a session and get sessions vars
 session_start();
 require_once("../dbh.inc.php");
+require_once "vendor/autoload.php";
+use Dotenv\Dotenv;
 
 // Email err = check if email is valid or is not empty
 // PswErrAz = check the password contains at least one letter
@@ -41,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $err_array['PswErrE']= "Both passwords need to be the same";
             }else{
                 //checks for a duplicate email
-                $stmt = $pdo->prepare("SELECT* FROM users WHERE email = :email");
+                $stmt = $pdo->prepare("SELECT* FROM users WHERE email = :email;");
                 $stmt->bindParam(':email',$email);
                 $stmt->execute();
                 if($stmt->rowCount()>0){
@@ -51,19 +53,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $cost = 15;
                     $hashOptions = ['cost' => $cost];
                     $psw_hash = password_hash($psw, PASSWORD_BCRYPT, $hashOptions);
-                    $stmt = $pdo->prepare("INSERT INTO users(email,psw) VALUES(:email,:psw");
+                    $stmt=$pdo->prepare("INSERT INTO users(email,password_hash) VALUES(:email,:password_hash);");
 
                     $stmt->bindParam(':email', $email);
-                    $stmt->bindParam(':psw', $psw_hash);
+                    $stmt->bindParam(':password_hash', $psw_hash);
                     $stmt->execute();
                     //loging the user in after registering
-                    $stmt -> $pdo->prepare("SELECT id,psw FROM users WHERE email= :email");
+                    $stmt = $pdo->prepare("SELECT password_hash,id FROM users WHERE email= :email;");
                     $stmt -> bindParam(":email",$email);
                     $stmt -> execute();
                     $user = $stmt ->fetch();
                     if($user){
                         $_SESSION['Loged_In'] = true;
-                        $_SESSION['id'] = session_id();
+                        $id = $user['id'];
+                        $_SESSION['id'] = password_hash($id,PASSWORD_BCRYPT,$hashOptions);
                         $_SESSION['Psw'] = $user['password_hash'];
                         $_SESSION['email'] = $user['email'];
                         header("Location: ../../index.php");
@@ -110,19 +113,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="Flex FD">
             <h1 class="Title">Welcome!</h1>
             <label for="email">
-                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email" value = "<?php $email ?>">
+                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email" autocomplete="off">
                 <br>
                 <span id = "Email"></span>
             </label>
             <label for="psw">
-                <input class="Inputs Verify" type="password" placeholder="Enter Password" id="psw" name="psw">
+                <input class="Inputs Verify" type="password" placeholder="Enter Password" id="psw" name="psw" autocomplete="off">
                 <br>
                 <span id = "Psw1"></span>
                 <br>
                 <span id = "Psw2"></span>
             </label>
             <label for="Rpsw">
-                <input class="Inputs Verify" type="password" placeholder="Confirm Password" id="Rpsw" name="Rpsw">
+                <input class="Inputs Verify" type="password" placeholder="Confirm Password" id="Rpsw" name="Rpsw" autocomplete="off">
                 <br>
                 <span id = "rpsw"></span>
             </label>
@@ -161,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         switch(dataType){
 
         case 'email':
-        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(item.value)){
+        if(!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(item.value)){
             document.getElementById('Email').innerHTML = 'A non valid email hase been provided'
         }else{
             document.getElementById('Email').innerHTML = ''

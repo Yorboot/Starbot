@@ -1,6 +1,5 @@
-<?php 
-    $login = require_once "login.inc.php";
-?>
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +28,7 @@
                 </li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
-                <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw" href="includes/extra-pages/Login/index.html">Login</a></li>
+                <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw" href="includes/extra-pages/Login/index.php">Login</a></li>
             </ul>
         </div>
     </header>
