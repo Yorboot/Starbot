@@ -1,5 +1,5 @@
 <?php
-$dsn = "mysql:host=localhost; dbname=nsdap-bot";
+$dsn = "mysql:host=localhost; dbname=starbot";
 $dbusername = "root";
 $dbpsw = "";
 $pdo = "";

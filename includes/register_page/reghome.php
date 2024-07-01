@@ -51,13 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $cost = 15;
                     $hashOptions = ['cost' => $cost];
                     $psw_hash = password_hash($psw, PASSWORD_BCRYPT, $hashOptions);
-                    $stmt = $pdo->prepare("INSERT INTO users(email,password_hash) VALUES(:email,:password_hash)");
+                    $stmt = $pdo->prepare("INSERT INTO users(email,psw) VALUES(:email,:psw");
 
                     $stmt->bindParam(':email', $email);
-                    $stmt->bindParam(':password_hash', $psw_hash);
+                    $stmt->bindParam(':psw', $psw_hash);
                     $stmt->execute();
                     //loging the user in after registering
-                    $stmt -> $pdo->prepare("SELECT id,password_hash FROM users WHERE email= :email");
+                    $stmt -> $pdo->prepare("SELECT id,psw FROM users WHERE email= :email");
                     $stmt -> bindParam(":email",$email);
                     $stmt -> execute();
                     $user = $stmt ->fetch();
@@ -66,8 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['id'] = session_id();
                         $_SESSION['Psw'] = $user['password_hash'];
                         $_SESSION['email'] = $user['email'];
+                        header("Location: ../../index.php");
+                        exit;
                     }
-                    header("location:../../index.php");
                     exit;
                 }
             }
@@ -140,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </ul>
         </div>
         <div class="Flex FgtPsw">
-            <span>Already have an acount?<a href="../extra-pages/Login/index.html">Login</a></span>
+            <span>Already have an acount?<a href="../extra-pages/Login/index.php">Login</a></span>
         </div>
     </form>
 </main>
