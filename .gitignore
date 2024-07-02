@@ -10,3 +10,6 @@ link.html
 /Bot/.package-lock.json
 /includes/dbh.inc.php
 /includes/fonts
+.json
+.lock
+/vendor

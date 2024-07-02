@@ -1,6 +1,9 @@
 <?php
 session_start();
-require_once("../dbh.inc.php");
+require_once "../dbh.inc.php";
+require_once "vendor/autoload.php";
+require_once "../Encrypt.php";
+use Dotenv\Dotenv;
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = Cinput($_POST["email"]);
             $psw = Cinput($_POST["psw"]);
             $Rpsw = Cinput($_POST["Rpsw"]);
+            $_SESSION['Loged_In'] = false;
             if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
                 exit;
             } elseif (strlen($_POST["psw"]) <= 8) {
@@ -31,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             }else{
                 //checks for a duplicate email
-                $stmt = $pdo->prepare('SELECT COUNT(*) FROM users WHERE email = :email');
+                $stmt = $pdo->prepare("SELECT* FROM users WHERE email = :email;");
                 $stmt->bindParam(':email',$email);
                 $stmt->execute();
                 $stmt->fetch();
@@ -42,20 +46,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $cost = 15;
                     $hashOptions = ['cost' => $cost];
                     $psw_hash = password_hash($psw, PASSWORD_BCRYPT, $hashOptions);
-                    $stmt = $pdo->prepare("INSERT INTO users(email,password_hash) VALUES(:email,:password_hash");
+                    $stmt = $pdo->prepare("INSERT INTO users(email,psw) VALUES(:email,:psw");
 
                     $stmt->bindParam(':email', $email);
                     $stmt->bindParam(':password_hash', $psw_hash);
                     $stmt->execute();
                     
                     //loging the user in after registering
-                    $stmt -> $pdo->prepare("SELECT password_hash FROM users WHERE email= :email");
+                    $stmt = $pdo->prepare("SELECT id,psw FROM users WHERE email= :email");
                     $stmt -> bindParam(":email",$email);
                     $stmt -> execute();
                     $user = $stmt ->fetch();
                     if($user){
                         $_SESSION['Loged_In'] = true;
-                        $_SESSION['id'] = session_id();
+                        $id = Encrypt($user['id']);
+                        $_SESSION['id'] = $id;
                         $_SESSION['Psw'] = $user['password_hash'];
                         $_SESSION['email'] = $user['email'];
                         header("Location: ../../index.php");
@@ -99,19 +104,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="Flex FD">
             <h1 class="Title">Welcome!</h1>
             <label for="email">
-                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email">
+                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email" value = "<?php $email ?>">
                 <br>
                 <span id = "Email"></span>
             </label>
             <label for="psw">
-                <input class="Inputs Verify" type="password" placeholder="Enter Password" id="psw" name="psw">
+                <input class="Inputs Verify" type="password" placeholder="Enter Password" id="psw" name="psw" autocomplete="off">
                 <br>
                 <span id = "Psw1"></span>
                 <br>
                 <span id = "Psw2"></span>
             </label>
             <label for="Rpsw">
-                <input class="Inputs Verify" type="password" placeholder="Confirm Password" id="Rpsw" name="Rpsw">
+                <input class="Inputs Verify" type="password" placeholder="Confirm Password" id="Rpsw" name="Rpsw" autocomplete="off">
                 <br>
                 <span id = "rpsw"></span>
             </label>
@@ -150,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         switch(dataType){
 
         case 'email':
-        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(item.value)){
+        if(!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(item.value)){
             document.getElementById('Email').innerHTML = 'A non valid email hase been provided'
         }else{
             document.getElementById('Email').innerHTML = ''

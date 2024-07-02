@@ -1,3 +1,14 @@
+<?php 
+require_once "./includes/Encrypt.php";
+session_start();
+
+if (!isset($_SESSION['Loged_In'])) {
+    $_SESSION['Loged_In'] = false;
+    header("Location: index.php");
+    exit;
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
