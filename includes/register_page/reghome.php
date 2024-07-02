@@ -1,16 +1,7 @@
 <?php
-//start a session and get sessions vars
 session_start();
 require_once("../dbh.inc.php");
 
-// Email err = check if email is valid or is not empty
-// PswErrAz = check the password contains at least one letter
-// PswErrN = check if the password contains numbers
-// PswErrE = checks if both passwords are the same
-// Demail = check if the email is a duplicate
-// PswL = check if the password is long enough
-$emailErr = $PswErrAz = $PswErrN = $PswErrE = $Vemail = $Demail = $PswL = "";
-$err_array = array('emailErr' => '', 'PswErrAz' => '', 'PswErrE' => '', 'Vemail' => '', 'Demail' => '', 'PswErrN' => '','PswL'=>'');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -28,22 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $psw = Cinput($_POST["psw"]);
             $Rpsw = Cinput($_POST["Rpsw"]);
             if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-                $err_array['Vemail'] = "A valid email must be provided";
+                exit;
             } elseif (strlen($_POST["psw"]) <= 8) {
-                $err_array['PswErrL'] = "Your Password must be atleast 8 characters long";
+                exit;
 
             } elseif (!preg_match("/[a-z]/i", $_POST["psw"])) {
-                $err_array['PswErrAz'] = "Your password must contain one letter atleast";
-
+              exit;
             } elseif (!preg_match("/[0-9]/i", $_POST["psw"])) {
-                $err_array['PswErrE'] = "Your password should atleast contain one number";
+                exit;
             } elseif($psw !=$Rpsw){
-                $err_array['PswErrE']= "Both passwords need to be the same";
+                exit;
             }else{
                 //checks for a duplicate email
-                $stmt = $pdo->prepare("SELECT* FROM users WHERE email = :email");
+                $stmt = $pdo->prepare('SELECT COUNT(*) FROM users WHERE email = :email');
                 $stmt->bindParam(':email',$email);
                 $stmt->execute();
+                $stmt->fetch();
                 if($stmt->rowCount()>0){
                     $err_array["Demail"]= "Email already exists";
                 }else{
@@ -51,13 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $cost = 15;
                     $hashOptions = ['cost' => $cost];
                     $psw_hash = password_hash($psw, PASSWORD_BCRYPT, $hashOptions);
-                    $stmt = $pdo->prepare("INSERT INTO users(email,psw) VALUES(:email,:psw");
+                    $stmt = $pdo->prepare("INSERT INTO users(email,password_hash) VALUES(:email,:password_hash");
 
                     $stmt->bindParam(':email', $email);
-                    $stmt->bindParam(':psw', $psw_hash);
+                    $stmt->bindParam(':password_hash', $psw_hash);
                     $stmt->execute();
+                    
                     //loging the user in after registering
-                    $stmt -> $pdo->prepare("SELECT id,psw FROM users WHERE email= :email");
+                    $stmt -> $pdo->prepare("SELECT password_hash FROM users WHERE email= :email");
                     $stmt -> bindParam(":email",$email);
                     $stmt -> execute();
                     $user = $stmt ->fetch();
@@ -72,22 +64,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit;
                 }
             }
-            $_SESSION['errors'] = $err_array;
             $_SESSION['form_data'] = $_POST;
-            header("Location:reghome.php");
             exit;
         }
 
     } catch (PDOException $Exception) {
         throw new PDOException($Exception->getMessage(), (int)$Exception->getCode());
     }
-    $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : $err_array;
     $form_data = isset($_SESSION['$form_data']) ? $_SESSION['$form_data'] : array('email' => '', 'psw' => '', 'Rpsw' => '');
     $email = isset($_POST['email']);
     $psw = isset($_POST['psw']);
     $Rpsw = isset($_POST['Rpsw']) ;
 
-}
+}  
 
 
 ?>
@@ -110,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="Flex FD">
             <h1 class="Title">Welcome!</h1>
             <label for="email">
-                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email" value = "<?php $email ?>">
+                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email">
                 <br>
                 <span id = "Email"></span>
             </label>
