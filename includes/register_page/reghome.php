@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "../dbh.inc.php";
-require_once "vendor/autoload.php";
+require_once "../../vendor/autoload.php";
 require_once "../Encrypt.php";
 use Dotenv\Dotenv;
 
@@ -46,14 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $cost = 15;
                     $hashOptions = ['cost' => $cost];
                     $psw_hash = password_hash($psw, PASSWORD_BCRYPT, $hashOptions);
-                    $stmt = $pdo->prepare("INSERT INTO users(email,psw) VALUES(:email,:psw");
+                    $stmt = $pdo->prepare("INSERT INTO users(email,password_hash ) VALUES(:email,:password_hash)");
 
                     $stmt->bindParam(':email', $email);
                     $stmt->bindParam(':password_hash', $psw_hash);
                     $stmt->execute();
                     
                     //loging the user in after registering
-                    $stmt = $pdo->prepare("SELECT id,psw FROM users WHERE email= :email");
+                    $stmt = $pdo->prepare("SELECT id,password_hash FROM users WHERE email= :email");
                     $stmt -> bindParam(":email",$email);
                     $stmt -> execute();
                     $user = $stmt ->fetch();
@@ -150,6 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     })
     function resetErrors(inputElement) {
         inputElement.nextElementSibling.innerHTML = '';
+        document.getElementById('Psw2').innerHTML = '';
     }
     function verifyData(item,dataType) {
         switch(dataType){
@@ -163,15 +164,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         break;
 
         case 'psw':
-            if(item.value.length <= 8){
+            if(item.value <= 8){
                 document.getElementById('Psw1').innerHTML = "Your password must be atleast 8 characters"
-            }else{
-                document.getElementById('Psw1').innerHTML = '';
-            }
-            if(!/a-zA-Z/.test(item.value)){
+            }else if(!/[a-zA-Z]/.test(item.value)){
                 document.getElementById('Psw2').innerHTML = "Your password should atleast contain one letter"
-            }else{
-                document.getElementById('Psw2').innerHTML = '';
+                document.getElementById('Psw1').innerHTML = '';
             }
             break;
         case 'Rpsw':

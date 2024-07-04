@@ -1,5 +1,5 @@
 <?php
-require_once "vendor/autoload.php";
+require_once("c:/xampp/htdocs/Starbot/vendor/autoload.php");
 use Dotenv\Dotenv;
 
 function generateKey(){
@@ -11,19 +11,19 @@ function generateIv(){
 function Encrypt($data){
     $iv = generateIv();
     $key = generateKey();
-    StoreEnv();
+    StoreEnv($key,$iv);
     return base64_encode(openssl_encrypt($data,'aes-256-cbc',base64_encode($key),OPENSSL_RAW_DATA, base64_decode($iv)));
 }
 function Decrypt($data){
     $iv = LoadIv();
     $key = LoadKey();
+    $dData = base64_decode(openssl_decrypt($data,'aes-256-cbc',base64_decode($key),OPENSSL_RAW_DATA,base64_decode($iv)));
     DumpVars($iv,$key);
-    return openssl_decrypt(base64_decode($data),'eas-256-cbc',base64_decode($key),OPENSSL_RAW_DATA,base64_decode($iv));
+    return $dData;
 }
 //generates a new key and iv and stores them in the .env file
-function StoreEnv(){
-    $key = generateKey();
-    $iv = generateIv();
+function StoreEnv($key,$iv){
+
     $envPath = __DIR__.'/.env';
     if(!file_exists($envPath)){
         touch($envPath);
@@ -34,10 +34,10 @@ function StoreEnv(){
     $envContent = preg_replace('/^ENCRYPTION_KEY=.*$/m',"ENCRYPTION_KEY =$key",$envContent);
     $envContent = preg_replace('/^ENCRYPTION_IV=.*$/m', "ENCRYPTION_IV=$iv", $envContent);
     if(!preg_match('/^ENCRYPTION_KEY=.*$/m',$envContent)){
-        $envContent .=" \nENCRYPTION_KEY=$key";
+        $envContent = " \nENCRYPTION_KEY=$key";
     }
     if(!preg_match('/^ENCRYPTION_IV=.*$/m',$envContent)){
-        $envContent .= "\nENCRYPTION_IV=$iv";
+        $envContent = "\nENCRYPTION_IV=$iv";
     }
     file_put_contents($envPath,$envContent);
 }

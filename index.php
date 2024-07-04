@@ -1,11 +1,30 @@
 <?php 
-require_once "./includes/Encrypt.php";
 session_start();
+require_once "./includes/Encrypt.php";
+require_once "./includes/dbh.inc.php";
+
 
 if (!isset($_SESSION['Loged_In'])) {
     $_SESSION['Loged_In'] = false;
     header("Location: index.php");
     exit;
+}elseif($_SESSION['Loged_In'] == true){
+    $email = $_SESSION['email'];
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE email= :email");
+    $stmt -> bindParam(":email",$email);
+    $stmt -> execute();
+    $user = $stmt ->fetch();
+    $id = Encrypt($user['id']);
+    echo "<br>";
+    echo $id;
+    echo "<br>";
+
+    echo "<br>";
+    echo $_SESSION['Psw'];
+    echo "<br>";
+    echo $_SESSION['email'];
+    echo "<br>";
+
 }
 
 ?>
