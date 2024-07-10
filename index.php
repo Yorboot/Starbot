@@ -10,13 +10,17 @@ if (!isset($_SESSION['Loged_In'])) {
     exit;
 }elseif($_SESSION['Loged_In'] == true){
     $email = $_SESSION['email'];
-    $stmt = $pdo->prepare("SELECT id FROM users WHERE email= :email");
+    $stmt = $pdo->prepare("SELECT id,password_hash FROM users WHERE email= :email");
     $stmt -> bindParam(":email",$email);
     $stmt -> execute();
     $user = $stmt ->fetch();
+    $_SESSION['Psw'] = $user['password_hash'];
     $id = Encrypt($user['id']);
     echo "<br>";
-    echo $id;
+    $did = Decrypt($id);
+    echo "Encrypted".$id;
+
+    echo "<br>";
     echo "<br>";
 
     echo "<br>";
