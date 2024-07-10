@@ -1,18 +1,10 @@
 <?php
-//start a session and get sessions vars
 session_start();
-require_once("../dbh.inc.php");
-require_once "vendor/autoload.php";
+require_once "../dbh.inc.php";
+require_once "../../vendor/autoload.php";
+require_once "../Encrypt.php";
 use Dotenv\Dotenv;
 
-// Email err = check if email is valid or is not empty
-// PswErrAz = check the password contains at least one letter
-// PswErrN = check if the password contains numbers
-// PswErrE = checks if both passwords are the same
-// Demail = check if the email is a duplicate
-// PswL = check if the password is long enough
-$emailErr = $PswErrAz = $PswErrN = $PswErrE = $Vemail = $Demail = $PswL = "";
-$err_array = array('emailErr' => '', 'PswErrAz' => '', 'PswErrE' => '', 'Vemail' => '', 'Demail' => '', 'PswErrN' => '','PswL'=>'');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -29,23 +21,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = Cinput($_POST["email"]);
             $psw = Cinput($_POST["psw"]);
             $Rpsw = Cinput($_POST["Rpsw"]);
+            $_SESSION['Loged_In'] = false;
             if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-                $err_array['Vemail'] = "A valid email must be provided";
+                exit;
             } elseif (strlen($_POST["psw"]) <= 8) {
-                $err_array['PswErrL'] = "Your Password must be atleast 8 characters long";
+                exit;
 
             } elseif (!preg_match("/[a-z]/i", $_POST["psw"])) {
-                $err_array['PswErrAz'] = "Your password must contain one letter atleast";
-
+              exit;
             } elseif (!preg_match("/[0-9]/i", $_POST["psw"])) {
-                $err_array['PswErrE'] = "Your password should atleast contain one number";
+                exit;
             } elseif($psw !=$Rpsw){
-                $err_array['PswErrE']= "Both passwords need to be the same";
+                exit;
             }else{
                 //checks for a duplicate email
                 $stmt = $pdo->prepare("SELECT* FROM users WHERE email = :email;");
                 $stmt->bindParam(':email',$email);
                 $stmt->execute();
+                $stmt->fetch();
                 if($stmt->rowCount()>0){
                     $err_array["Demail"]= "Email already exists";
                 }else{
@@ -54,20 +47,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     $hashOptions = ['cost' => $cost];
                     $psw_hash = password_hash($psw, PASSWORD_BCRYPT, $hashOptions);
-                    $stmt=$pdo->prepare("INSERT INTO users(email,password_hash) VALUES(:email,:password_hash);");
+                    $stmt = $pdo->prepare("INSERT INTO users(email,password_hash ) VALUES(:email,:password_hash)");
 
                     $stmt->bindParam(':email', $email);
                     $stmt->bindParam(':password_hash', $psw_hash);
                     $stmt->execute();
+                    
                     //loging the user in after registering
-                    $stmt = $pdo->prepare("SELECT password_hash,id FROM users WHERE email= :email;");
+                    $stmt = $pdo->prepare("SELECT id,password_hash FROM users WHERE email= :email");
                     $stmt -> bindParam(":email",$email);
                     $stmt -> execute();
                     $user = $stmt ->fetch();
                     if($user){
                         $_SESSION['Loged_In'] = true;
-                        $id = $user['id'];
-                        $_SESSION['id'] = password_hash($id,PASSWORD_BCRYPT,$hashOptions);
+                        $id = Encrypt($user['id']);
+                        $_SESSION['id'] = $id;
                         $_SESSION['Psw'] = $user['password_hash'];
                         $_SESSION['email'] = $user['email'];
                         header("Location: ../../index.php");
@@ -76,22 +70,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit;
                 }
             }
-            $_SESSION['errors'] = $err_array;
             $_SESSION['form_data'] = $_POST;
-            header("Location:reghome.php");
             exit;
         }
 
     } catch (PDOException $Exception) {
         throw new PDOException($Exception->getMessage(), (int)$Exception->getCode());
     }
-    $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : $err_array;
     $form_data = isset($_SESSION['$form_data']) ? $_SESSION['$form_data'] : array('email' => '', 'psw' => '', 'Rpsw' => '');
     $email = isset($_POST['email']);
     $psw = isset($_POST['psw']);
     $Rpsw = isset($_POST['Rpsw']) ;
 
-}
+}  
 
 
 ?>
@@ -114,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="Flex FD">
             <h1 class="Title">Welcome!</h1>
             <label for="email">
-                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email" autocomplete="off">
+                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email" value = "<?php $email ?>">
                 <br>
                 <span id = "Email"></span>
             </label>
@@ -160,6 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     })
     function resetErrors(inputElement) {
         inputElement.nextElementSibling.innerHTML = '';
+        document.getElementById('Psw2').innerHTML = '';
     }
     function verifyData(item,dataType) {
         switch(dataType){
@@ -173,15 +165,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         break;
 
         case 'psw':
-            if(item.value.length <= 8){
+            if(item.value <= 8){
                 document.getElementById('Psw1').innerHTML = "Your password must be atleast 8 characters"
-            }else{
-                document.getElementById('Psw1').innerHTML = '';
-            }
-            if(!/a-zA-Z/.test(item.value)){
+            }else if(!/[a-zA-Z]/.test(item.value)){
                 document.getElementById('Psw2').innerHTML = "Your password should atleast contain one letter"
-            }else{
-                document.getElementById('Psw2').innerHTML = '';
+                document.getElementById('Psw1').innerHTML = '';
             }
             break;
         case 'Rpsw':

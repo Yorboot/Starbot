@@ -10,8 +10,8 @@ $id = $_SESSION['id'];
 try {
     $stmt = $pdo->prepare("SELECT * FROM users WHERE id=:id");
     
-} catch (\Throwable $th) {
-    //throw $th;
+} catch (PDOException $e) {
+    die("connection failed". $e->getMessage());
 }
 
 ?>

@@ -17,13 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $email = Cinput($_POST['email']);
     $password = Cinput($_POST['psw']);
-    $stmt = $pdo->prepare("SELECT psw FROM users WHERE email = :email");
+    $stmt = $pdo->prepare("SELECT password_hash FROM users WHERE email = :email");
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    if ($user && password_verify($password, $user["psw"])) {
-        $_SESSION['Loged_In'] = false;
+    if ($user && password_verify($password, $user["password_hash"])) {
+        $_SESSION['Loged_In'] = true;
         $_SESSION['id'] = session_id();
         $_SESSION["email"] = $email;
         $_SESSION['psw'] = $password;
