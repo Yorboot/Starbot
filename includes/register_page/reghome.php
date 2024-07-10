@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }else{
                     //actually registering the user
                     $cost = 15;
+
                     $hashOptions = ['cost' => $cost];
                     $psw_hash = password_hash($psw, PASSWORD_BCRYPT, $hashOptions);
                     $stmt=$pdo->prepare("INSERT INTO users(email,password_hash) VALUES(:email,:password_hash);");
