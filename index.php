@@ -1,8 +1,8 @@
 <?php 
 session_start();
+use Dotenv\Dotenv;
 require_once "./includes/Encrypt.php";
 require_once "./includes/dbh.inc.php";
-
 
 if (!isset($_SESSION['Loged_In'])) {
     $_SESSION['Loged_In'] = false;
@@ -10,18 +10,19 @@ if (!isset($_SESSION['Loged_In'])) {
     exit;
 }elseif($_SESSION['Loged_In'] == true){
     $email = $_SESSION['email'];
-    $stmt = $pdo->prepare("SELECT id,password_hash FROM users WHERE email= :email");
+    $stmt =  $pdo->prepare("SELECT id,password_hash FROM users WHERE email= :email");
     $stmt -> bindParam(":email",$email);
     $stmt -> execute();
     $user = $stmt ->fetch();
     $_SESSION['Psw'] = $user['password_hash'];
-    $id = Encrypt($user['id']);
+    $id = Encrypt($user['id'],);
+    echo "<br>";
+    echo "Encrypted".$id;
     echo "<br>";
     $did = Decrypt($id);
-    echo "Encrypted".$id;
-
+    echo "Decrypted".$did;
     echo "<br>";
-    echo "<br>";
+ 
 
     echo "<br>";
     echo $_SESSION['Psw'];
