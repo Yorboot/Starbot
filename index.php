@@ -14,11 +14,14 @@ if (!isset($_SESSION['Loged_In'])) {
     $stmt -> bindParam(":email",$email);
     $stmt -> execute();
     $user = $stmt ->fetch();
-    $_SESSION['Psw'] = $user['password_hash'];
-    $id = Encrypt($user['id']);
+
+    $_SESSION['Psw'] = (string) $user['password_hash'];
+    if(Encrypt($user['id'])){
+        echo Encrypt($user['id']);
+    }else{
+        echo "id empty";
+    }
     echo "<br>";
-    $did = Decrypt($id);
-    echo "Encrypted".$id;
 
     echo "<br>";
     echo "<br>";

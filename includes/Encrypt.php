@@ -1,9 +1,9 @@
 <?php
 require_once("c:/xampp/htdocs/Starbot/vendor/autoload.php");
 use Dotenv\Dotenv;
+
 $dotenv = Dotenv::createMutable(__DIR__);
-$dotenv ->load();
-//Needed for automaticly loading dependencies on startup
+$dotenv->load();
 
 
 
@@ -20,12 +20,12 @@ function Encrypt($data){
     $key = generateKey();
     
     StoreEnv($key,$iv);
-    return base64_encode(openssl_encrypt($data,'aes-256-cbc',base64_encode($key),OPENSSL_RAW_DATA, base64_decode($iv)));
+    return openssl_encrypt($data,'aes-256-cbc',base64_encode($key),OPENSSL_RAW_DATA, base64_decode($iv));
 }
 function Decrypt($data){
     $iv = LoadIv();
     $key = LoadKey();
-    $dData = base64_decode(openssl_decrypt($data,'aes-256-cbc',base64_decode($key),OPENSSL_RAW_DATA,base64_decode($iv)));
+    $dData = openssl_decrypt($data,'aes-256-cbc',base64_decode($key),OPENSSL_RAW_DATA,base64_decode($iv));
     var_dump($iv,$key);
     return $dData;
 }
