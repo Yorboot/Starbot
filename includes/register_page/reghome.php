@@ -3,13 +3,12 @@ session_start();
 require_once "../dbh.inc.php";
 require_once "../../vendor/autoload.php";
 require_once "../Encrypt.php";
-use Dotenv\Dotenv;
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         //function to clean up inputs
-        function Cinput($data)
+        function Cinput($data):string
         {
             $data = trim($data);
             $data = stripslashes($data);
@@ -60,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $user = $stmt ->fetch();
                     if($user){
                         $_SESSION['Loged_In'] = true;
-                        $id = Encrypt($user['id']);
+                        $id = session_id();
                         $_SESSION['id'] = $id;
                         $_SESSION['Psw'] = $user['password_hash'];
                         $_SESSION['email'] = $user['email'];

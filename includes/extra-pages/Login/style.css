@@ -64,7 +64,7 @@ ul {
   cursor: pointer;
 }
 
-.OlwT {
+.Olwt {
   position: relative;
   padding: 0px 12px 0px 12px;
 }
@@ -151,4 +151,25 @@ ul {
   margin-left: 0vw;
 }
 
+.Togel {
+  border-radius: 100%;
+  background-color: rgba(2, 7, 25, 0.85);
+  border: 0px solid rgba(0, 0, 0, 0);
+  height: 10px;
+  width: 10px;
+  position: relative;
+  z-index: 1;
+  right: 8%;
+}
+.Togel:checked{
+  background-color: rgba(2, 7, 25, 0.85);
+}
+
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+}
 /*# sourceMappingURL=style.css.map */
