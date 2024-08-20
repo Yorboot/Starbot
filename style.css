@@ -21,7 +21,7 @@ body {
 }
 
 label,input,button,a,input::placeholder,h1,h2,h3,h4,h5,p{
-  font-family:Cascadia Code !important; 
+  font-family: Cascadia Code, serif !important;
 }
 label{
   font-weight: 300;
@@ -45,7 +45,6 @@ figcaption,
 blockquote,
 dl,
 dd {
-
   margin: 0em;
 }
 
