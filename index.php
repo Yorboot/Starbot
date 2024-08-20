@@ -1,14 +1,14 @@
-<?php 
-session_start();
-use Dotenv\Dotenv;
-require_once "./includes/Encrypt.php";
-require_once "./includes/dbh.inc.php";
+<?php
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
 
-if (!isset($_SESSION['Loged_In'])) {
-    $_SESSION['Loged_In'] = false;
-    header("Location: index.php");
-    exit;
-}elseif($_SESSION['Loged_In'])
+require_once "./includes/dbh.inc.php";
+require_once "./includes/extra-pages/Login/index.php";
+
+if(!$_SESSION['Loged_in']){
+    session_destroy();
+}
 
 ?>
 
@@ -23,7 +23,7 @@ if (!isset($_SESSION['Loged_In'])) {
     <!--Main css file-->
     <link rel="stylesheet" href="style.css">
     <!--Css file to normalize all browsers settings across all browers-->
-    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="./includes/normalize.css">
     <!--Favcon-->
     <link rel="icon" href="images/favcon.png">
     <!--Main js file-->
@@ -40,7 +40,8 @@ if (!isset($_SESSION['Loged_In'])) {
                 </li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
-                <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw" href="includes/extra-pages/Login/index.php">Login</a></li>
+                <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw <?php if($_SESSION['Loged_in']){echo 'block';}?>" id = "Login" > href="includes/extra-pages/Login/index.php">Login</a></li>
+                <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw " id = "Profile" href="includes/extra-pages/profile/index.php">Profile</a></li>
             </ul>
         </div>
     </header>
@@ -57,5 +58,6 @@ if (!isset($_SESSION['Loged_In'])) {
         <span><a class="DiscTxt"><img src="images/discord.png" alt="discord icon" class="DiscImg"></a></span>
     </footer>
 </body>
+
 
 </html>

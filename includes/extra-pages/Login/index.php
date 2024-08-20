@@ -1,14 +1,15 @@
 <?php
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
 global $pdo;
-session_start();
 
 $Err = function () {
     if (!isset($_SESSION['Err'])) {
         $_SESSION['Err'] = '';
     }
 };
-require_once("../../dbh.inc.php");
-
+require_once(__DIR__ . '/../../dbh.inc.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -61,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="icon" href="../../../images/favcon.png">
-    <link rel="stylesheet" href="../../../node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="../../normalize.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
