@@ -1,14 +1,9 @@
 <?php
-if(session_status() == PHP_SESSION_NONE){
-    session_start();
-}
+if(session_status() == PHP_SESSION_NONE){session_start();}
 
 require_once "./includes/dbh.inc.php";
-require_once "./includes/extra-pages/Login/index.php";
-
-if(!$_SESSION['Loged_in']){
-    session_destroy();
-}
+if(!isset($_SESSION['Loged_in'])){$_SESSION['Loged_in']='';}
+if(!$_SESSION['Loged_In']){session_destroy();}
 
 ?>
 
@@ -23,11 +18,11 @@ if(!$_SESSION['Loged_in']){
     <!--Main css file-->
     <link rel="stylesheet" href="style.css">
     <!--Css file to normalize all browsers settings across all browers-->
-    <link rel="stylesheet" href="./includes/normalize.css">
+    <link rel="stylesheet" href="includes/normalize.css">
     <!--Favcon-->
-    <link rel="icon" href="images/favcon.png">
+    <link rel="icon" href="./images/favcon.png">
     <!--Main js file-->
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 
 <body>
@@ -40,7 +35,13 @@ if(!$_SESSION['Loged_in']){
                 </li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
-                <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw <?php if($_SESSION['Loged_in']){echo 'block';}?>" id = "Login" > href="includes/extra-pages/Login/index.php">Login</a></li>
+                <li><a class="nav-link nav-link-ltr flt-right Login Lgmb fw"
+                       style="display: <?php if(!$_SESSION['Loged_in']){echo 'block';}else{echo 'none';}?>"
+                        id = "Login"
+                       href="includes/extra-pages/Login/index.php">
+
+                    <?php if(!$_SESSION['Loged_In']){echo 'Login';}else{echo '';} ?></a></li>
+
                 <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw " id = "Profile" href="includes/extra-pages/profile/index.php">Profile</a></li>
             </ul>
         </div>
@@ -55,9 +56,7 @@ if(!$_SESSION['Loged_in']){
     </main>
 
     <footer class="ftr">
-        <span><a class="DiscTxt"><img src="images/discord.png" alt="discord icon" class="DiscImg"></a></span>
+        <span><a class="DiscTxt"><img src="./images/discord.png" alt="discord icon" class="DiscImg"></a></span>
     </footer>
 </body>
-
-
 </html>

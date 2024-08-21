@@ -4,11 +4,10 @@ if(session_status() == PHP_SESSION_NONE){
 }
 global $pdo;
 
-$Err = function () {
-    if (!isset($_SESSION['Err'])) {
+  if (!isset($_SESSION['Err'])) {
         $_SESSION['Err'] = '';
     }
-};
+
 require_once(__DIR__ . '/../../dbh.inc.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
