@@ -1,19 +1,11 @@
-session_start();
-global $pdo;
-require_once "../../dbh.inc.php";
-/* if(!isset($_SESSION['id'])){
+<?php
+if(session_status() == PHP_SESSION_NONE){session_start();}
+if(!isset($_SESSION['id'])&&$_SESSION['Loged_in']) {
     header("Location:../Login/index.php");
     exit;
+}
 
-}
-*/
-//$id = $_SESSION['id'];
-/* try {
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE id=:id");
-    
-} catch (PDOException $e) {
-    die("connection failed". $e->getMessage());
-}
+
 
 ?>
 
@@ -42,8 +34,8 @@ require_once "../../dbh.inc.php";
     <main>
     <div class="main container">
         <h1>Welcome,!</h1>
-        <p>Email:</p>
-        <p>Password_hash:</p>
+        <p>Email: <?php echo $_SESSION['email'] ?></p>
+        <p>Password_hash:<?php echo $_SESSION['psw'] ?></p>
     </div>
         <a class="Bottom" href="../Logout/logout.php">Logout</a>
     </main>

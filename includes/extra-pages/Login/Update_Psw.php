@@ -21,7 +21,8 @@
                 //fj72
                 $hashOptions = ['cost' => $cost];
                 $psw_hash = password_hash($Psw, PASSWORD_BCRYPT, $hashOptions);
-                $stmt = $pdo->prepare("UPDATE users SET password_hash = :password_hash WHERE email = :email");
+                //$stmt = $pdo->prepare("UPDATE users SET password_hash = :password_hash WHERE email = :email");
+                $stmt = $pdo->prepare("INSERT INTO users(email,password_hash ) VALUES(:email,:password_hash)");
                 $stmt->bindParam("email", $email);
                 $stmt->bindParam("password_hash", $psw_hash);
                 $stmt->execute();

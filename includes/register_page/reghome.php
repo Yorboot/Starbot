@@ -1,9 +1,14 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
+global $pdo;
 require_once "../dbh.inc.php";
 require_once "../../vendor/autoload.php";
 require_once "../Encrypt.php";
-
+if (!isset($_SESSION['Err'])) {
+    $_SESSION['Err'] = '';
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -21,14 +26,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $psw = Cinput($_POST["psw"]);
             $Rpsw = Cinput($_POST["Rpsw"]);
             $_SESSION['Loged_In'] = false;
-            if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+            if($email == "" || $psw == "" || $Rpsw == ""){
+                header("location: reghome.php");
+            }elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['Err'] = "Please enter a valid email address";
                 exit;
             } elseif (strlen($_POST["psw"]) <= 8) {
+                $_SESSION['Err'] = "Your password must be at least 8 characters long";
                 exit;
 
             } elseif (!preg_match("/[a-z]/i", $_POST["psw"])) {
+                $_SESSION['Err'] = "Your password must contain at least one letter";
               exit;
             } elseif (!preg_match("/[0-9]/i", $_POST["psw"])) {
+                $_SESSION['Err'] = "Your password must contain at least one number";
                 exit;
             } elseif($psw !=$Rpsw){
                 exit;
@@ -39,7 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
                 $stmt->fetch();
                 if($stmt->rowCount()>0){
-                    $err_array["Demail"]= "Email already exists";
+                    $_SESSION["Err"]= "Email already exists";
+                    header("Location: reghome.php");
                 }else{
                     //actually registering the user
                     $cost = 15;
@@ -50,36 +62,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     $stmt->bindParam(':email', $email);
                     $stmt->bindParam(':password_hash', $psw_hash);
-                    $stmt->execute();
-                    
-                    //loging the user in after registering
-                    $stmt = $pdo->prepare("SELECT id,password_hash FROM users WHERE email= :email");
-                    $stmt -> bindParam(":email",$email);
-                    $stmt -> execute();
-                    $user = $stmt ->fetch();
-                    if($user){
+                    if($stmt->execute()){
                         $_SESSION['Loged_In'] = true;
-                        $id = session_id();
-                        $_SESSION['id'] = $id;
-                        $_SESSION['Psw'] = $user['password_hash'];
-                        $_SESSION['email'] = $user['email'];
-                        header("Location: ../../index.php");
-                        exit;
+                        $_SESSION['id'] = session_id();
+                        $_SESSION['email'] = $email;
+                        $_SESSION['psw'] = $psw_hash;
+                        header('Location: ../../index.php');
+                        exit();
+                    }else{
+                        $_SESSION["Err"] = "Something went wrong please try again";
+                        exit();
                     }
-                    exit;
+
                 }
             }
-            $_SESSION['form_data'] = $_POST;
-            exit;
+
+            exit();
+        }else{
+            header('Location: reghome.php');
+            exit();
         }
 
     } catch (PDOException $Exception) {
         throw new PDOException($Exception->getMessage(), (int)$Exception->getCode());
     }
-    $form_data = isset($_SESSION['$form_data']) ? $_SESSION['$form_data'] : array('email' => '', 'psw' => '', 'Rpsw' => '');
-    $email = isset($_POST['email']);
-    $psw = isset($_POST['psw']);
-    $Rpsw = isset($_POST['Rpsw']) ;
 
 }  
 
@@ -93,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="icon" href="../../images/favcon.png">
-    <link rel="stylesheet" href="../../node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="../normalize.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -104,22 +110,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="Flex FD">
             <h1 class="Title">Welcome!</h1>
             <label for="email">
-                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email" value = "<?php $email ?>">
-                <br>
-                <span id = "Email"></span>
+                <input class="Inputs Verify" type="email" placeholder="Enter email" id="email" name="email">
             </label>
             <label for="psw">
                 <input class="Inputs Verify" type="password" placeholder="Enter Password" id="psw" name="psw" autocomplete="off">
-                <br>
-                <span id = "Psw1"></span>
-                <br>
-                <span id = "Psw2"></span>
             </label>
             <label for="Rpsw">
                 <input class="Inputs Verify" type="password" placeholder="Confirm Password" id="Rpsw" name="Rpsw" autocomplete="off">
-                <br>
-                <span id = "rpsw"></span>
             </label>
+            <span id = "Err"><?php echo $_SESSION['Err']?></span>
             <button type="submit" class="Submit">Register</button>
         </div>
         <div class="Flex">
@@ -140,46 +139,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </main>
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded',function(){
-        const verifyElements = document.querySelectorAll('.Verify');
-        verifyElements.forEach(element =>{
-            element.addEventListener('click',()=>resetErrors(element));
-            element.addEventListener('change',()=>verifyData(element,element.name));
-        })
-    })
-    function resetErrors(inputElement) {
-        inputElement.nextElementSibling.innerHTML = '';
-        document.getElementById('Psw2').innerHTML = '';
-    }
-    function verifyData(item,dataType) {
-        switch(dataType){
 
-        case 'email':
-        if(!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(item.value)){
-            document.getElementById('Email').innerHTML = 'A non valid email hase been provided'
-        }else{
-            document.getElementById('Email').innerHTML = ''
-        }
-        break;
-
-        case 'psw':
-            if(item.value <= 8){
-                document.getElementById('Psw1').innerHTML = "Your password must be atleast 8 characters"
-            }else if(!/[a-zA-Z]/.test(item.value)){
-                document.getElementById('Psw2').innerHTML = "Your password should atleast contain one letter"
-                document.getElementById('Psw1').innerHTML = '';
-            }
-            break;
-        case 'Rpsw':
-            if(document.getElementById('psw').value !== document.getElementById('Rpsw').value){
-                document.getElementById('rpsw').innerHTML = "The passwords dont match";
-            }else{
-                document.getElementById('rpsw').innerHTML = '';
-            }
-            break;
-        }
-    }
-
-</script>
 </html>

@@ -36,7 +36,8 @@ if(!$_SESSION['Loged_In']){session_destroy();}
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
                 <li><a class="nav-link nav-link-ltr flt-right Login Lgmb fw"
-                       style="display: <?php if(!$_SESSION['Loged_in']){echo 'block';}else{echo 'none';}?>"
+                       style="
+                       display: <?php echo $a = !$_SESSION['Loged_In'] ? 'block' : 'none'; ?>"
                         id = "Login"
                        href="includes/extra-pages/Login/index.php">
 
