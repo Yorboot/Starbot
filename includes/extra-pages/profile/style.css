@@ -61,19 +61,22 @@ dd {
 h1 {
   font-size: 0em;
 }
-
-main {
+.Flex{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+main {
   width: 100vw;
   height: 87.5vh;
 }
 
-.flex {
-  display: flex !important;
+.flex{
+  display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
 }
 
 .Navbar {
@@ -91,10 +94,17 @@ main {
 .Bottom {
   position: absolute;
   bottom: 5%;
-  text-decoration: none;
-  color: black;
-}
 
+}
+.Logout{
+  border: 0;
+  border-radius: 10px;
+  height: 3vh;
+  width: 5vw;
+  background-image: linear-gradient(to right,rgba(54, 68, 61, 0.7),rgba(65, 87, 75, 0.8));
+  color: black;
+  cursor: pointer;
+}
 
 
 /*# sourceMappingURL=style.css.map */

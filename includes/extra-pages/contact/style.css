@@ -35,11 +35,12 @@ input::placeholder {
     font-weight: 350;
 }
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     width: 100vw;
     height: 87.5vh;
+}
+.colum{
+    flex-direction: column;
 }
 
 .flex {
@@ -132,4 +133,29 @@ main {
 .nav-link:hover {
     color: rgba(44, 78, 59, 0.7);
     background-color: rgba(80, 129, 110, 0.3);
+}
+.Padding{
+    margin-bottom: 3vh;
+}
+.Inputs{
+    border-radius: 5px;
+    border: 0;
+    height: 2.5vh;
+}
+.Inputs::placeholder {
+    text-align: left;
+    font-weight: 400;
+    color: black;
+}
+.textbox{
+    height: 30vh;
+    width: 30vw;
+}
+.Email{
+    margin-top: 2vh;
+    width: 30vw;
+    height: 3vh;
+}
+.Text{
+    margin-top: 15vh;
 }
