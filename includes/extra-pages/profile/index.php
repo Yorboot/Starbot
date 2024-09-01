@@ -37,7 +37,10 @@ if(!isset($_SESSION['id'])&&$_SESSION['Loged_in']) {
         <p>Email: <?php echo $_SESSION['email'] ?></p>
         <p>Password_hash:<?php echo $_SESSION['psw'] ?></p>
     </div>
-        <a class="Bottom" href="../Logout/logout.php">Logout</a>
+        <form action="../Logout/logout.php">
+            <button class="Bottom">Logout</button>
+        </form>
+
     </main>
 </body>
 
