@@ -31,16 +31,15 @@ if(!isset($_SESSION['id'])&&$_SESSION['Loged_in']) {
                 </ul>
             </div>
         </header>
-    <main>
-    <div class="main container">
+    <main class ="Flex">
+    <div>
         <h1>Welcome,!</h1>
         <p>Email: <?php echo $_SESSION['email'] ?></p>
         <p>Password_hash:<?php echo $_SESSION['psw'] ?></p>
     </div>
-        <form action="../Logout/logout.php">
-            <button class="Bottom">Logout</button>
+        <form method = "POST" action="../Logout/logout.php" class="Flex">
+            <button type="submit" class="Bottom Logout">Logout</button>
         </form>
-
     </main>
 </body>
 

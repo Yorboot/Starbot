@@ -3,6 +3,7 @@ var Login = document.querySelector(".Login");
 var Profile = document.getElementById("Profile");
 var computedStyle = window.getComputedStyle(Login);
 var Loged_in;
+
 if (computedStyle.display === "block") {
     Loged_in = true;
     Profile.style.display = "none";

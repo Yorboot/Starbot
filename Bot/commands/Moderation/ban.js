@@ -4,10 +4,10 @@ const { EmbedBuilder, PermissionsBitField } = require('discord.js')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('ban')
-        .setDescription('This command bans the adressed person out of your discord server')
+        .setDescription('This command bans the addressed person out of your discord server')
         .addUserOption(option => option.setName('target').setDescription('The user you would like to ban').setRequired(true))
         .addStringOption(option => option.setName('reason').setDescription('the reason for banning this user')),
-    async execute(interaction, client) {
+    async execute(interaction) {
 
         const banUser = interaction.options.getUser('target');
         const banMember = await interaction.guild.members.fetch(banUser.id);

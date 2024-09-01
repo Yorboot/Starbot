@@ -4,7 +4,7 @@ if(session_status() == PHP_SESSION_NONE){
 }
 global $pdo;
 require_once "../dbh.inc.php";
-require_once "../../vendor/autoload.php";
+// require_once "../../vendor/autoload.php";
 require_once "../Encrypt.php";
 if (!isset($_SESSION['Err'])) {
     $_SESSION['Err'] = '';

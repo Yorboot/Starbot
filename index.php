@@ -2,7 +2,7 @@
 if(session_status() == PHP_SESSION_NONE){session_start();}
 
 require_once "./includes/dbh.inc.php";
-if(!isset($_SESSION['Loged_in'])){$_SESSION['Loged_in']='';}
+if(!isset($_SESSION['Loged_In'])){$_SESSION['Loged_In']='';}
 if(!$_SESSION['Loged_In']){session_destroy();}
 
 ?>
@@ -44,6 +44,7 @@ if(!$_SESSION['Loged_In']){session_destroy();}
                     <?php if(!$_SESSION['Loged_In']){echo 'Login';}else{echo '';} ?></a></li>
 
                 <li><a class= "nav-link nav-link-ltr flt-right Lgmb fw " id = "Profile" href="includes/extra-pages/profile/index.php">Profile</a></li>
+                <li><a class= "nav-link nav-link-ltr " href="includes/extra-pages/contact/contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
