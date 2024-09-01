@@ -1,7 +1,6 @@
 <?php
 if(session_status() == PHP_SESSION_NONE){session_start();}
 
-require_once "./includes/dbh.inc.php";
 if(!isset($_SESSION['Loged_In'])){$_SESSION['Loged_In']='';}
 if(!$_SESSION['Loged_In']){session_destroy();}
 
