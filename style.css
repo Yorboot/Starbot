@@ -112,6 +112,7 @@ main {
   text-decoration: none;
   transform: translateY(-6px);
   font-size: 120%;
+  border-radius: 5px;
 }
 
 .flt-right {
@@ -288,9 +289,6 @@ input[type=password] {
   width: 3vw;
 }
 
-.modal-container {
-  background-color: rgba(54, 68, 61, 0.9) !important;
-}
 
 ::placeholder {
   color: rgb(0, 0, 0);
@@ -316,7 +314,7 @@ input[type=password] {
   position: relative;
 }
 
-/*Butttons*/
+/*Buttons*/
 .Login {
   border: 0;
   width: 8%;

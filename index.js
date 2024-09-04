@@ -1,5 +1,5 @@
 //ts compiler command : tsc index.ts --watch -w
-var Login = document.querySelector(".Login");
+var Login = document.getElementById("Login")
 var Profile = document.getElementById("Profile");
 var computedStyle = window.getComputedStyle(Login);
 var Loged_in;

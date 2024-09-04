@@ -20,8 +20,41 @@ html {
 
 body {
   margin: 0;
+  height: 100vh;
+  width: 100vw;
 }
+main{
+  height: 60vh;
+  width: 100vw;
+}
+footer{
+  height: 30vh;
+  width: 100vw;
+}
+header{
+  height: 10vh;
+  width: 100vw;
+}
+.Flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Img{
+  height: 10vh;
 
+}
+ul{
+  list-style: none;
+}
+li{
+  text-decoration: none;
+}
+a{
+  text-decoration: none;
+  color: black;
+  
+}
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.

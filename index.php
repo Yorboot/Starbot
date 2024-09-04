@@ -1,7 +1,6 @@
 <?php
 if(session_status() == PHP_SESSION_NONE){session_start();}
 
-require_once "./includes/dbh.inc.php";
 if(!isset($_SESSION['Loged_In'])){$_SESSION['Loged_In']='';}
 if(!$_SESSION['Loged_In']){session_destroy();}
 
@@ -31,11 +30,11 @@ if(!$_SESSION['Loged_In']){session_destroy();}
             <ul class="nav">
                 <li><a href="index.php" class="nav-link nav-link-ltr">Main</a></li>
                 <li><a class="nav-link nav-link-ltr">Dashboard</a></li>
-                <li><a href="/includes/extra-pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a>
+                <li><a href="includes/extra-pages/Commands/commands.html" class="nav-link nav-link-ltr">Commands</a>
                 </li>
                 <li><a href="https://github.com/Roy123132123/Starbot" class="nav-link nav-link-ltr">Github</a></li>
                 <!--Lgmb = Login main button-->
-                <li><a class="nav-link nav-link-ltr flt-right Login Lgmb fw"
+                <li><a class="nav-link nav-link-ltr flt-right Lgmb fw"
                        style="
                        display: <?php echo $a = !$_SESSION['Loged_In'] ? 'block' : 'none'; ?>"
                         id = "Login"

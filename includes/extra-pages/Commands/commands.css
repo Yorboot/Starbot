@@ -41,8 +41,6 @@ dd {
   background-color: rgba(84, 105, 97, 0.8);
 }
 .Head {
-  height: 10vh;
-  width: 100vw;
   position: relative;
 }
 .Navbar>ul {
@@ -69,7 +67,6 @@ dd {
   border: 0px;
   right: 1vw;
   position: relative;
-  float: inline-end;
   font-size: 130%;
 }
 /*animations/transitions*/
@@ -100,19 +97,17 @@ dd {
 }
 /*Title*/
 .Title{
-    margin-block-start: 0em;
-    margin-block-end: 0em;
+    margin-block-start: 0;
+    margin-block-end: 0;
     text-align: center;
     font-size: 250%;
 }
 /*Footer*/
-.ftr {
-  bottom: 5vh;
-  position: relative;
+
+.disc{
+  position: absolute;
+  justify-content: flex-start;
 }
-.DiscImg {
-  left: 0.5vw;
-  position: relative;
+.DiscImg{
   width: 3vw;
 }
-

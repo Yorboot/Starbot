@@ -7,9 +7,6 @@ html, body, ul {
   padding: 0%;
 }
 
-@font-face {
-  font-family: Mainfont;
-  src: url(../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
 }
 h1, h2, h3, h4, h5, h6, span, div, a {
   font-family: Mainfont;
