@@ -1,42 +1,22 @@
 /*General classes*/
 html {
-  padding: 0%;
-  margin: 0%;
+  padding: 0;
+  margin: 0;
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(to bottom left, rgba(54, 68, 61, 0.7), rgba(78, 95, 88, 0.8), rgba(65, 87, 75, 0.8));
 
 }
-label,input,button,a,input::placeholder,h1,h2,h3,h4,h5,p{
-  font-family:Cascadia Code !important; 
-}
 .fw{
   font-weight: 350;
 }
 body {
-  padding: 0%;
-  height: 100vh;
-  width: 100vw;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-li,
-figure,
-figcaption,
-blockquote,
-dl,
-dd {
-  margin: 0em;
-}
 /*Navbar*/
 .Navbar {
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
   overflow: hidden;
   background-color: rgba(84, 105, 97, 0.8);
 }
@@ -64,7 +44,7 @@ dd {
 
 .flt-right {
   background-color: rgba(44, 78, 59, 0);
-  border: 0px;
+  border: 0;
   right: 1vw;
   position: relative;
   font-size: 130%;
@@ -83,7 +63,7 @@ dd {
 }
 
 .nav-link-ltr::before {
-  width: 0%;
+  width: 0;
   bottom: 2%;
 }
 

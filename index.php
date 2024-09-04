@@ -47,7 +47,7 @@ if(!$_SESSION['Loged_In']){session_destroy();}
             </ul>
         </div>
     </header>
-    <main id="Main">
+    <main id="Main" class = "Flex">
         <div class="Flex-container">
             <div class="Main-text">
                 <h1 class="Title">Starbot</h1>

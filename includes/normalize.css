@@ -9,6 +9,12 @@
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(to bottom left, rgba(54, 68, 61, 0.7), rgba(78, 95, 88, 0.8), rgba(65, 87, 75, 0.8));
+
 }
 
 /* Sections
@@ -17,8 +23,12 @@ html {
 /**
  * Remove the margin in all browsers.
  */
-
+script {
+  display: none !important;
+}
 body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -125,11 +135,16 @@ strong {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-code,
-kbd,
-samp {
-  font-family: "Cascadia Code", serif !important;
-  font-size: 1em; /* 2 */
+p, span, div, a, strong, em, b, i, u, small, mark, abbr, q, cite, code, pre, blockquote, sup, sub,
+h1, h2, h3, h4, h5, h6,
+li, ul, ol, dl, dt, dd,
+table, th, td, caption, thead, tbody, tfoot,
+label, input, textarea, button, select, option, legend, fieldset,
+body, footer, header, nav, article, section, aside, figure, figcaption {
+  font-weight: 500;
+  color: rgba(2, 7, 25, 0.85);
+  font-family: Cascadia Code, sans-serif;
+  margin: 0;
 }
 
 /**

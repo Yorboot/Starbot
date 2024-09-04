@@ -3,16 +3,10 @@ a {
 }
 
 html, body, ul {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
 }
 
-}
-h1, h2, h3, h4, h5, h6, span, div, a {
-  font-family: Mainfont;
-  font-weight: 500;
-  color: rgba(2, 7, 25, 0.85);
-}
 
 ul {
   list-style: none;
@@ -28,8 +22,8 @@ ul {
 .Inputs {
   background-color: rgba(71, 90, 80, 0.502);
   width: 80%;
-  padding: 2vh 0vw 2vh 0.4vw;
-  margin: 0.4vw 0vw 1vh 0.5vw;
+  padding: 2vh 0 2vh 0.4vw;
+  margin: 0.4vw 0 1vh 0.5vw;
   display: inline-block;
   border: 2px rgb(39, 56, 47);
   box-sizing: border-box;
@@ -41,7 +35,7 @@ ul {
 }
 
 .Submit {
-  margin: 0.5vh 0vw 2vh 1vh;
+  margin: 0.5vh 0 2vh 1vh;
   width: 80%;
   height: 5.5vh;
   background-color: rgba(2, 7, 25, 0.85);
@@ -57,7 +51,7 @@ ul {
 
 .OlwT {
   position: relative;
-  padding: 0px 12px 0px 12px;
+  padding: 0 12px 0 12px;
 }
 
 .Line {
@@ -139,7 +133,7 @@ ul {
 }
 
 .Title {
-  margin-left: 0vw;
+  margin-left: 0;
 }
 
 .Inputs::placeholder {
