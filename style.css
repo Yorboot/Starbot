@@ -32,7 +32,7 @@ input::placeholder {
 }
 
 .fw {
-  font-family: Cascadia Code;
+  font-family: Cascadia Code, serif;
   font-weight: 350;
 }
 
@@ -48,11 +48,11 @@ figcaption,
 blockquote,
 dl,
 dd {
-  margin: 0em;
+  margin: 0;
 }
 
 h1 {
-  font-size: 0em;
+  font-size: 0;
 }
 
 main {

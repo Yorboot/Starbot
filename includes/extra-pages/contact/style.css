@@ -3,23 +3,23 @@ script {
 }
 
 html {
-    padding: 0%;
-    margin: 0%;
+    padding: 0;
+    margin: 0;
     height: 100vh;
     width: 100vw;
     background-image: linear-gradient(to bottom left, rgba(54, 68, 61, 0.7), rgba(78, 95, 88, 0.8), rgba(65, 87, 75, 0.8));
 }
 
 body {
-    padding: 0%;
+    padding: 0;
     height: 100vh;
     width: 100vw;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
 }
 
-label, input, button, a, input::placeholder, h1, h2, h3, h4, h5, p {
-    font-family: Cascadia Code, serif !important;
+label, input, button, a, input::placeholder,textarea::placeholder, h1, h2, h3, h4, h5, p {
+    font-family: "Cascadia Code", serif !important;
 }
 
 label {
@@ -49,22 +49,12 @@ main {
     align-items: center;
 }
 
-.margin-top {
-    margin-top: 21%;
-}
 
-/* main text*/
-.Title {
-    position: relative;
-    top: 50%;
-    font-size: 350%;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-}
+
 
 /*Navbar*/
 .Navbar {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
     overflow: hidden;
     background-color: rgba(84, 105, 97, 0.8);
 }
@@ -96,7 +86,7 @@ main {
 
 .flt-right {
     background-color: rgba(44, 78, 59, 0);
-    border: 0px;
+    border: 0;
     right: 1vw;
     position: relative;
     float: inline-end;
@@ -122,7 +112,7 @@ main {
 }
 
 .nav-link-ltr::before {
-    width: 0%;
+    width: 0;
     bottom: 2%;
 }
 
@@ -142,20 +132,39 @@ main {
     border: 0;
     height: 2.5vh;
 }
-.Inputs::placeholder {
+.Inputs::placeholder{
+    text-align: left;
+    font-weight: 400;
+    color: black;
+}
+.textbox::placeholder{
     text-align: left;
     font-weight: 40;
     color: black;
 }
 .textbox{
-    height: 30vh;
     width: 30vw;
+    height: 20vh;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
 }
 .Email{
     margin-top: 2vh;
     width: 30vw;
     height: 3vh;
 }
+#Button{
+    border: 0;
+    border-radius: 10px;
+    height: 3vh;
+    width: 5vw;
+    background-image: linear-gradient(to right,rgba(54, 68, 61, 0.7),rgba(65, 87, 75, 0.8));
+    color: black;
+    cursor: pointer;
+}
 .Text{
-    margin-top: 15vh;
+    font-size: 2em;
 }

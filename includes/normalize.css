@@ -85,7 +85,7 @@ hr {
  */
 
 pre {
-  font-family: monospace, monospace; /* 1 */
+  font-family: "Cascadia Code", serif !important;
   font-size: 1em; /* 2 */
 }
 
@@ -128,7 +128,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
+  font-family: "Cascadia Code", serif !important;
   font-size: 1em; /* 2 */
 }
 
@@ -184,13 +184,12 @@ button,
 input,
 optgroup,
 select,
-textarea {
-  font-family: inherit; /* 1 */
+textarea,textarea::placeholder,label, input, button, a, input::placeholder, h1, h2, h3, h4, h5, p  {
+  font-family: "Cascadia Code", serif !important;
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
 }
-
 /**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.

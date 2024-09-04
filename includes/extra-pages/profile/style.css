@@ -19,7 +19,7 @@ li {
 }
 
 body {
-  padding: 0%;
+  padding: 0;
   height: 100vh;
   width: 100vw;
   text-rendering: optimizeSpeed;
@@ -55,11 +55,11 @@ figcaption,
 blockquote,
 dl,
 dd {
-  margin: 0em;
+  margin: 0;
 }
 
 h1 {
-  font-size: 0em;
+  font-size: 0;
 }
 .Flex{
   display: flex;
